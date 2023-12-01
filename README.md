@@ -12,27 +12,31 @@ This monorepo is structured to hold all the code for all days of the advent of c
 
 ```
 ├── README.md
-├── day-01
-│   ├── Cargo.lock
-│   ├── Cargo.toml
-│   ├── README.md
-│   ├── input.txt
-│   ├── sample.txt
-│   └── src
-│       ├── lib.rs
-│       └── main.rs
+└── day-01
+    ├── README.md
+    ├── data
+    │   ├── input.txt
+    │   ├── sample_part_01.txt
+    │   └── sample_part_02.txt
+    ├── lib
+    │   ├── main.rb
+    │   └── solution.rb
+    └── test
+        └── solution.spec.rb
 .
 . ... day 02 to day n-1
 .
 └── day-n
-    ├── Cargo.lock
-    ├── Cargo.toml
     ├── README.md
-    ├── input.txt
-    ├── sample.txt
-    └── src
-        ├── lib.rs
-        └── main.rs
+    ├── data
+    │   ├── input.txt
+    │   ├── sample_part_01.txt
+    │   └── sample_part_02.txt
+    ├── lib
+    │   ├── main.rb
+    │   └── solution.rb
+    └── test
+        └── solution.spec.rb
 ```
 
 Each `day-n` project looks similar, containing:
