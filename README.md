@@ -42,10 +42,9 @@ This monorepo is structured to hold all the code for all days of the advent of c
 Each `day-n` project looks similar, containing:
 
 - a `README.md` with the challenge URL, description, and the solution details
-- a `sample.txt` file, containing the sample provided in the challenge
-- a `input.txt` file, containing the actual input provided by the challenge
-- a `src/index.(spec.)rb` file, containing the actual implementation and tests
-- a `src/main.rb` file, containing the code that loads the input data, parses it and calls the implementation
+- a `/data` directory, containing the samples provided for parts one and two and the final input for the challenge
+- a `lib/solution.(spec.)rb` file, containing the actual implementation and tests
+- a `lib/main.rb` file, containing the code that loads the input data, parses it and calls the implementation
 
 ## Solutions
 
