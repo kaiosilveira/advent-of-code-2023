@@ -46,6 +46,24 @@ Each `day-n` project looks similar, containing:
 - a `lib/solution.(spec.)rb` file, containing the actual implementation and tests
 - a `lib/main.rb` file, containing the code that loads the input data, parses it and calls the implementation
 
+## Templating and automations
+
+To speed things up, a template was created with the base structure for each day, containing the common structure mentioned above.
+
+A Rake script was created to copy the files from the template and kick-off a new day. The execution looks like this: `rake "create_day[02]"`, and the output is something like:
+
+```console
+➜ rake "create_day[02]"
+Creating day-02...
+Copying files from template dir into day-02...
+Copying /data...
+Copying /lib...
+Copying /test...
+Copying /README.md...
+All set ✅
+Happy hacking! 🚀
+```
+
 ## Solutions
 
 The table below contains references to all days, including the completion status for parts I and II.
