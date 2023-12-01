@@ -1,0 +1,22 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    m (1.6.2)
+      method_source (>= 0.6.7)
+      rake (>= 0.9.2.2)
+    method_source (1.0.0)
+    power_assert (2.0.3)
+    rake (13.0.6)
+    test-unit (3.6.1)
+      power_assert
+
+PLATFORMS
+  arm64-darwin-23
+
+DEPENDENCIES
+  m
+  rake
+  test-unit
+
+BUNDLED WITH
+   2.4.10
