@@ -35,11 +35,11 @@ Determine which games would have been possible if the bag had been loaded with o
 <details>
 <summary>See solution</summary>
 
-We can divide his problem into two main parts: checking the game feasibility (or whether or not it was possible) and getting the sum of the possible game ids.
+We can divide this problem into two main parts: checking the game feasibility (or whether or not it was possible) and getting the sum of the possible game ids.
 
 ### Checking the game feasibility
 
-Using the sample data provided above, we can start with a simple test to guide implementation:
+Using the sample data provided above, we can start with a simple test to guide our implementation:
 
 ```ruby
 def test_check_game_feasibility
@@ -50,7 +50,9 @@ def test_check_game_feasibility
 end
 ```
 
-Now, we have some work to do. First, we need to separate the "game name" (the "Game XYZ" part) from the rounds (everything after the `:`). Then, we need to isolate each round (based on the `;`). Finally, we will need to isolate each color used in the round. Let's do it step by step below.
+Now, we have some work to do.
+
+First, we need to separate the "game name" (the "Game XYZ" part) from the rounds (everything after the `:`). Then, we need to isolate each round (based on the `;`). Finally, we will need to isolate each color used in the round. Let's do it step-by-step below.
 
 To separate the game name from the rounds and then isolate the rounds, we can use `String#spit`:
 
@@ -59,7 +61,7 @@ game_name, round_info = game_info.split(':')
 all_rounds = round_info.split(';')
 ```
 
-Then, to find the cubes used in each round, we need to `.split` the round info using the `,` delimiter (which will give us something like `[" 1 green", " 3 red", " 6 blue"]`). Then, we can `.strip` any extra spaces, and finally, `.split` again to separate the color from the number. As a final step, we can convert the resulting `color, number` into a hash, so we will have something like `{ green: 3 }`:
+Then, to find the cubes used in each round, we need to `.split` the round info using the `,` delimiter (which will give us something like `[" 1 green", " 3 red", " 6 blue"]`). Then, we can `.strip` any extra spaces, and finally, `.split` again to separate the color from the number. As a final step, we can convert the resulting `color, number` pair into a hash, so we will have something like `{ green: 3 }`:
 
 ```ruby
 cubes_per_round = all_rounds.map do |round|
@@ -68,7 +70,7 @@ cubes_per_round = all_rounds.map do |round|
 end
 ```
 
-Moving on, to have a comprehensive view of what cubes were used in each round, we need to merge the partial hashes created above into a single `{ red: x, green: y, blue: z }` hash, which defaults to zero in case no cube with a given color was used. To reduce the partials, we can do the following:
+Moving on, to have a comprehensive view of what cubes were used in each round, we need to merge the partial hashes created above into a single `{ red: x, green: y, blue: z }` hash, which defaults to zero in case no cube with a given color was used. To _reduce_ the partials, we can do the following:
 
 ```ruby
 def self.get_total_cubes_used_per_round(round)
@@ -76,7 +78,7 @@ def self.get_total_cubes_used_per_round(round)
 end
 ```
 
-The code above starts with a hash containing the defaults (`{ red: 0, green: 0, blue: 0 }`), then, it traverses the round data merging the partials (such as `{ green: 3 }`) back into the default hash.
+The code above starts with a hash containing the defaults (`{ red: 0, green: 0, blue: 0 }`), then, it traverses the round data, merging the partials (such as `{ green: 3 }`) back into the default hash.
 
 With that in place, we just need to map over all the partials for each round calling `get_total_cubes_used_per_round`:
 
@@ -130,7 +132,7 @@ def self.is_game_possible?(game_info, constraints)
 end
 ```
 
-At this point, our test should be passing using the computed result, so we can remove the placeholder and expand the test so it covers the other scenarios provided in the sample data as well:
+At this point, our test should be passing using the computed result, so we can remove the return placeholder and expand the test so it covers the other scenarios provided in the sample data as well:
 
 ```ruby
 def test_check_game_feasibility
@@ -153,7 +155,7 @@ The test should still pass.
 
 ### Getting the sum of possible game ids
 
-The test to guide this implementation uses the data provided in the sample and expects a `get_sum_of_possible_game_ids` to take a list of games and return the sum of the ids of the possible ones:
+The test to guide this step uses the data provided in the sample and expects a `get_sum_of_possible_game_ids` to take a list of games and return the sum of the ids of the possible ones:
 
 ```ruby
 def test_get_sum_of_possible_game_ids
@@ -278,7 +280,7 @@ end
 
 And then we can begin our work.
 
-The minimum number of cubes required will be the maximum number of cubes used in a single round. As we already know how to `get_cubes_used_in_each_game_round`, we just need to get this data and loop over it, keeping the max number for each color:
+The minimum number of cubes required will be the maximum number of cubes of a given color used in a single round. As we already know how to `get_cubes_used_in_each_game_round`, we just need to get this data and loop over it, keeping the max number for each color:
 
 ```ruby
 def self.get_minimum_number_of_cubes_required(game_info)
