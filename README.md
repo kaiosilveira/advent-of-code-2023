@@ -68,9 +68,10 @@ Happy hacking! 🚀
 
 The table below contains references to all days, including the completion status for parts I and II.
 
-| day | title       | implementation    | part I | part II |
-| --- | ----------- | ----------------- | ------ | ------- |
-| #1  | Trebuchet?! | [here](./day-01/) | ✅     | ✅      |
+| day | title          | implementation    | part I | part II |
+| --- | -------------- | ----------------- | ------ | ------- |
+| #1  | Trebuchet?!    | [here](./day-01/) | ✅     | ✅      |
+| #1  | Cube Conundrum | [here](./day-02/) | ✅     | ✅      |
 
 - ✅ = **solved and documented**
 - 🚧 = **solved, but without documentation**
