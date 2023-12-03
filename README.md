@@ -72,7 +72,8 @@ The table below contains references to all days, including the completion status
 | --- | -------------- | ----------------- | ------ | ------- |
 | #1  | Trebuchet?!    | [here](./day-01/) | ✅     | ✅      |
 | #1  | Cube Conundrum | [here](./day-02/) | ✅     | ✅      |
+| #1  | Gear Ratios    | [here](./day-03/) | 🚧     | 🚧      |
 
-- ✅ = **solved and documented**
-- 🚧 = **solved, but without documentation**
+- ✅ = **solved + documented**
+- 🚧 = **solved, missing documentation**
 - ❌ = **Not solved yet**
