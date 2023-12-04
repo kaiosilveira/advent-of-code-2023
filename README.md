@@ -71,9 +71,9 @@ The table below contains references to all days, including the completion status
 | day | title          | implementation    | part I | part II |
 | --- | -------------- | ----------------- | ------ | ------- |
 | #1  | Trebuchet?!    | [here](./day-01/) | ✅     | ✅      |
-| #1  | Cube Conundrum | [here](./day-02/) | ✅     | ✅      |
-| #1  | Gear Ratios    | [here](./day-03/) | 🚧     | 🚧      |
-| #1  | Gear Ratios    | [here](./day-04/) | 🚧     | 🚧      |
+| #2  | Cube Conundrum | [here](./day-02/) | ✅     | ✅      |
+| #3  | Gear Ratios    | [here](./day-03/) | 🚧     | 🚧      |
+| #4  | Scratchcards   | [here](./day-04/) | 🚧     | 🚧      |
 
 - ✅ = **solved + documented**
 - 🚧 = **solved, missing documentation**
