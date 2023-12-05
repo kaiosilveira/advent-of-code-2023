@@ -74,6 +74,7 @@ The table below contains references to all days, including the completion status
 | #2  | Cube Conundrum | [here](./day-02/) | ✅     | ✅      |
 | #3  | Gear Ratios    | [here](./day-03/) | 🚧     | 🚧      |
 | #4  | Scratchcards   | [here](./day-04/) | 🚧     | 🚧      |
+| #4  | Scratchcards   | [here](./day-05/) | 🚧     | 🚧      |
 
 - ✅ = **solved + documented**
 - 🚧 = **solved, missing documentation**
