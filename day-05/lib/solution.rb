@@ -84,24 +84,17 @@ module AoC2023
         mappings = parse_input(input)
         seed_ranges = mappings[:seeds]
 
-        min_location = min_location = Float::INFINITY
+        found_location = nil
 
-        all_location_ranges = mappings[:humidity_to_location].map do |m|
-          m[:dest].first..m[:dest].last
-        end.sort { |a, b| a.begin <=> b.begin }
-
-        puts all_location_ranges.inspect
-
-        found_seeds = all_location_ranges.flat_map do |location_range|
-          location_range.flat_map do |location|
+        while found_location.nil?
+          (0..Float::INFINITY).each do |location|
             seed = find_seed_for_location(mappings, location: location)
-            { seed: seed, location: location }
+            found_location = location if seed_ranges.any? { |range| range.include?(seed) }
+            break if found_location
           end
         end
 
-        puts found_seeds.sort { |a, b| a[:location] <=> b[:location] }.inspect
-
-        46
+        found_location
       end
 
       def self.parse_input(input)
