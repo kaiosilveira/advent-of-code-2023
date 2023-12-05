@@ -42,28 +42,6 @@ module AoC2023
       ]
     end
 
-    class Day05Test < Test::Unit::TestCase
-      def test_parse_dest_src_map
-        map = [
-          "seed-to-soil map:",
-          "50 98 2",
-          "52 50 48"
-        ]
-
-        expected_output = [[(50..51), (98..99)], [(52..99), (50..97)]]
-        assert_equal expected_output, Day05.parse_dest_src_map(map)
-      end
-
-      def test_find_location_for_seed
-        mappings = Day05::Part01.parse_input(Day05.input)
-
-        assert_equal 82, Day05.find_location_for_seed(mappings, seed: 79)
-        assert_equal 43, Day05.find_location_for_seed(mappings, seed: 14)
-        assert_equal 86, Day05.find_location_for_seed(mappings, seed: 55)
-        assert_equal 35, Day05.find_location_for_seed(mappings, seed: 13)
-      end
-    end
-
     module Part01
       class Part01Test < Test::Unit::TestCase
         def test_parse_seeds
@@ -122,17 +100,28 @@ module AoC2023
           assert_equal humidity_to_location, result[:humidity_to_location]
         end
 
-        def test_find_location_for_seed
-          mappings = Part01.parse_input(Day05.input)
-
-          assert_equal 82, Day05.find_location_for_seed(mappings, seed: 79)
-          assert_equal 43, Day05.find_location_for_seed(mappings, seed: 14)
-          assert_equal 86, Day05.find_location_for_seed(mappings, seed: 55)
-          assert_equal 35, Day05.find_location_for_seed(mappings, seed: 13)
-        end
-
         def test_finds_minimum_location
           assert_equal 35, Part01.solve(input: Day05.input)
+        end
+
+        def test_parse_dest_src_map
+          map = [
+            "seed-to-soil map:",
+            "50 98 2",
+            "52 50 48"
+          ]
+  
+          expected_output = [[(50..51), (98..99)], [(52..99), (50..97)]]
+          assert_equal expected_output, Part01.parse_dest_src_map(map)
+        end
+  
+        def test_find_location_for_seed
+          mappings = Day05::Part01.parse_input(Day05.input)
+  
+          assert_equal 82, Part01.find_location_for_seed(mappings, seed: 79)
+          assert_equal 43, Part01.find_location_for_seed(mappings, seed: 14)
+          assert_equal 86, Part01.find_location_for_seed(mappings, seed: 55)
+          assert_equal 35, Part01.find_location_for_seed(mappings, seed: 13)
         end
       end
     end
