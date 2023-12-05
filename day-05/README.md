@@ -1,6 +1,6 @@
-## Day n: Template
+## Day 5: If You Give A Seed A Fertilizer
 
-URL: https://adventofcode.com/2023/day/n
+URL: https://adventofcode.com/2023/day/5
 
 lorem
 
