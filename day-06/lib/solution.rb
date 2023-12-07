@@ -1,5 +1,5 @@
 module AoC2023
-  module DayN
+  module Day06
     module Part01
       def self.solve(input:)
         get_product_of_record_breaking_possibilities(

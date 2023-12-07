@@ -2,7 +2,7 @@ require 'test/unit'
 require_relative '../lib/solution'
 
 module AoC2023
-  module DayN
+  module Day06
     module Part01
       class Part01Test < Test::Unit::TestCase
         def test_parse_input
