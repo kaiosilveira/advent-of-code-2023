@@ -68,13 +68,16 @@ Happy hacking! 🚀
 
 The table below contains references to all days, including the completion status for parts I and II.
 
-| day | title          | implementation    | part I | part II |
-| --- | -------------- | ----------------- | ------ | ------- |
-| #1  | Trebuchet?!    | [here](./day-01/) | ✅     | ✅      |
-| #2  | Cube Conundrum | [here](./day-02/) | ✅     | ✅      |
-| #3  | Gear Ratios    | [here](./day-03/) | 🚧     | 🚧      |
-| #4  | Scratchcards   | [here](./day-04/) | 🚧     | 🚧      |
-| #4  | Scratchcards   | [here](./day-05/) | 🚧     | 🚧      |
+| day | title                           | implementation    | part I | part II |
+| --- | ------------------------------- | ----------------- | ------ | ------- |
+| #1  | Trebuchet?!                     | [here](./day-01/) | ✅     | ✅      |
+| #2  | Cube Conundrum                  | [here](./day-02/) | ✅     | ✅      |
+| #3  | Gear Ratios                     | [here](./day-03/) | ✅     | ✅      |
+| #4  | Scratchcards                    | [here](./day-04/) | ✅     | ✅      |
+| #5  | If You Give A Seed A Fertilizer | [here](./day-05/) | ✅     | ✅      |
+| #6  | Wait For It                     | [here](./day-06/) | ✅     | ✅      |
+| #7  | Camel Cards                     | [here](./day-07/) | 🚧     | 🚧      |
+| #8  | Haunted Wasteland               | [here](./day-08/) | ✅     | ✅      |
 
 - ✅ = **solved + documented**
 - 🚧 = **solved, missing documentation**
