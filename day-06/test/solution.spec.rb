@@ -77,10 +77,21 @@ module AoC2023
         end
 
         def test_get_record_breaking_acceleration_distributions
-          assert_equal 4, Part02.get_number_of_record_breaking_acceleration_distributions_for(record: { time: 7, distance: 9 })
-          assert_equal 8, Part02.get_number_of_record_breaking_acceleration_distributions_for(record: { time: 15, distance: 40 })
-          assert_equal 9, Part02.get_number_of_record_breaking_acceleration_distributions_for(record: { time: 30, distance: 200 })
-          assert_equal 71503, Part02.get_number_of_record_breaking_acceleration_distributions_for(record: { time: 71530, distance: 940200 })
+          assert_equal 4, Part02.get_number_of_record_breaking_acceleration_distributions_for(
+            record: { time: 7, distance: 9 }
+          )
+
+          assert_equal 8, Part02.get_number_of_record_breaking_acceleration_distributions_for(
+            record: { time: 15, distance: 40 }
+          )
+
+          assert_equal 9, Part02.get_number_of_record_breaking_acceleration_distributions_for(
+            record: { time: 30, distance: 200 }
+          )
+
+          assert_equal 71503, Part02.get_number_of_record_breaking_acceleration_distributions_for(
+            record: { time: 71530, distance: 940200 }
+          )
         end
 
         def input
