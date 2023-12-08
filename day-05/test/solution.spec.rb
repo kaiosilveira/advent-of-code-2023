@@ -55,47 +55,50 @@ module AoC2023
           seeds = [79, 14, 55, 13]
           assert_equal seeds, result[:seeds]
 
-          seed_to_soil = [[(50..51), (98..99)], [(52..99), (50..97)]]
+          seed_to_soil = [
+            { dest: [50, 51], src: [98, 99] },
+            { dest: [52, 99], src: [50, 97] }
+          ]
+
           assert_equal seed_to_soil, result[:seed_to_soil]
           
           soil_to_fertilizer = [
-            [
-              (0..36), (15..51)],
-              [(37..38), (52..53)],
-              [(39..53), (0..14)]
+            { dest: [0, 36], src: [15, 51] },
+            { dest: [37, 38], src: [52, 53] },
+            { dest: [39, 53], src: [0, 14] }
           ]
           assert_equal soil_to_fertilizer, result[:soil_to_fertilizer]
 
           fertilizer_to_water = [
-            [(49..56), (53..60)],
-            [(0..41), (11..52)],
-            [(42..48), (0..6)],
-            [(57..60), (7..10)]
+            { dest: [49, 56], src: [53, 60] },
+            { dest: [0, 41], src: [11, 52] },
+            { dest: [42, 48], src: [0, 6] },
+            { dest: [57, 60], src: [7, 10] }
           ]
           assert_equal fertilizer_to_water, result[:fertilizer_to_water]
 
           water_to_light = [
-            [(88..94), (18..24)],
-            [(18..87), (25..94)]
+            { dest: [88, 94], src: [18, 24] },
+            { dest: [18, 87], src: [25, 94] }
           ]
           assert_equal water_to_light, result[:water_to_light]
 
           light_to_temperature = [
-            [(45..67), (77..99)],
-            [(81..99), (45..63)],
-            [(68..80), (64..76)]
+            { dest: [45, 67], src: [77, 99] },
+            { dest: [81, 99], src: [45, 63] },
+            { dest: [68, 80], src: [64, 76] }
           ]
           assert_equal light_to_temperature, result[:light_to_temperature]
 
           temperature_to_humidity = [
-            [(0..0), (69..69)],
-            [(1..69), (0..68)]
-          ]          
+            { dest: [0, 0], src: [69, 69] },
+            { dest: [1, 69], src: [0, 68] }
+          ]
           assert_equal temperature_to_humidity, result[:temperature_to_humidity]
 
           humidity_to_location = [
-            [(60..96), (56..92)],
-            [(56..59), (93..96)]
+            { dest: [60, 96], src: [56, 92] },
+            { dest: [56, 59], src: [93, 96] }
           ]
           assert_equal humidity_to_location, result[:humidity_to_location]
         end
@@ -111,12 +114,15 @@ module AoC2023
             "52 50 48"
           ]
   
-          expected_output = [[(50..51), (98..99)], [(52..99), (50..97)]]
-          assert_equal expected_output, Part01.parse_dest_src_map(map)
+          expected_output = [
+            { dest: [50, 51], src: [98, 99] },
+            { dest: [52, 99], src: [50, 97] }
+          ]
+          assert_equal expected_output, Day05.parse_dest_src_map(map)
         end
   
         def test_find_location_for_seed
-          mappings = Day05::Part01.parse_input(Day05.input)
+          mappings = Part01.parse_input(Day05.input)
   
           assert_equal 82, Part01.find_location_for_seed(mappings, seed: 79)
           assert_equal 43, Part01.find_location_for_seed(mappings, seed: 14)
@@ -149,12 +155,7 @@ module AoC2023
             { dest: [50, 51], src: [10, 11] },
             { dest:[52, 54], src: [50, 52] }
           ]
-          assert_equal expected_output, Part02.parse_dest_src_map(map)
-        end
-
-        def test_find_dest_or_identity
-          assert_equal 1, Part02.find_dest_or_identity([{ dest: [1, 2], src: [3, 4] }], token: 3)
-          assert_equal 1, Part02.find_dest_or_identity([{ dest: [1, 2], src: [3, 4] }], token: 1)
+          assert_equal expected_output, Day05.parse_dest_src_map(map)
         end
 
         def test_find_src_or_identity

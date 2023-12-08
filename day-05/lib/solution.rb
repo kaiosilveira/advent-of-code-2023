@@ -1,23 +1,48 @@
 module AoC2023
   module Day05
 
+    def self.parse_mappings(chunks)
+      mappings = chunks.map { |chunk| parse_dest_src_map(chunk.split("\n").map(&:strip)) }
+      {
+        seed_to_soil: mappings[0],
+        soil_to_fertilizer: mappings[1],
+        fertilizer_to_water: mappings[2],
+        water_to_light: mappings[3],
+        light_to_temperature: mappings[4],
+        temperature_to_humidity: mappings[5],
+        humidity_to_location: mappings[6]
+      }
+    end
+
+    def self.parse_dest_src_map(map)
+      range_specs = map[1..-1].map { |line| line.split(" ").map(&:to_i) }
+  
+      result = range_specs.map do |spec|
+        dest, src, length = spec
+        { dest: [dest, dest + length - 1], src: [src, src + length - 1] }
+      end
+
+      result
+    end
+
+    def self.find_match_or_identity(mapping, token, from:, to:)
+      range = mapping.find do |ranges|
+        dest_range = ranges[from]
+        dest_range.first <= token && token <= dest_range.last
+      end
+
+      return token unless range
+
+      range[to].first + token - range[from].first
+    end
+
     module Part01
       def self.solve(input:)
         mappings = parse_input(input)
         seeds = mappings[:seeds]
+        locations = seeds.map { |seed| find_location_for_seed(mappings, seed: seed) }
 
-        seeds.map { |seed| find_location_for_seed(mappings, seed: seed) }.min
-      end
-
-      def self.parse_dest_src_map(map)
-        range_specs = map[1..-1].map { |line| line.split(" ").map(&:to_i) }
-  
-        result = range_specs.map do |spec|
-          dest, src, length = spec
-          [(dest..dest + length - 1), (src..src + length - 1)]
-        end
-  
-        result
+        locations.min
       end
   
       def self.find_location_for_seed(mappings, seed:)
@@ -33,45 +58,16 @@ module AoC2023
       end
   
       def self.find_match_or_identity(mapping, token:)
-        range = mapping.find.with_index do |ranges|
-          _, src_range = ranges
-          src_range.include?(token)
-        end
-  
-        return token unless range
-  
-        dest_range, src_range = range
-        dest_range.begin + token - src_range.begin
+        Day05.find_match_or_identity(mapping, token, from: :src, to: :dest)
       end
 
       def self.parse_input(input)
-        first_stage = input.strip.split("\n\n").map(&:strip)
-        raw_seeds, seed_to_soil_map, soil_to_fertilizer_map, fertilizer_to_water_map,
-          water_to_light_map, light_to_temperature_map, temperature_to_humidity_map,
-          humidity_to_location_map = first_stage.map { |stage| stage.split("\n").map(&:strip) }
-
+        chunks = input.strip.split("\n\n").map(&:strip)
+        raw_seeds = chunks.first.split("\n").map(&:strip)
         seeds = parse_seeds(raw_seeds)
-        seed_to_soil, soil_to_fertilizer, fertilizer_to_water, water_to_light,
-          light_to_temperature, temperature_to_humidity, humidity_to_location = [
-          parse_dest_src_map(seed_to_soil_map),
-          parse_dest_src_map(soil_to_fertilizer_map),
-          parse_dest_src_map(fertilizer_to_water_map),
-          parse_dest_src_map(water_to_light_map),
-          parse_dest_src_map(light_to_temperature_map),
-          parse_dest_src_map(temperature_to_humidity_map),
-          parse_dest_src_map(humidity_to_location_map)
-        ]
+        mappings = Day05.parse_mappings(chunks.slice(1, chunks.size - 1))
 
-        {
-          seeds: seeds,
-          seed_to_soil: seed_to_soil,
-          soil_to_fertilizer: soil_to_fertilizer,
-          fertilizer_to_water: fertilizer_to_water,
-          water_to_light: water_to_light,
-          light_to_temperature: light_to_temperature,
-          temperature_to_humidity: temperature_to_humidity,
-          humidity_to_location: humidity_to_location
-        }
+        { seeds: seeds }.merge(mappings)
       end
 
       def self.parse_seeds(raw_seeds) 
@@ -98,33 +94,12 @@ module AoC2023
       end
 
       def self.parse_input(input)
-        first_stage = input.strip.split("\n\n").map(&:strip)
-        raw_seeds, seed_to_soil_map, soil_to_fertilizer_map, fertilizer_to_water_map,
-          water_to_light_map, light_to_temperature_map, temperature_to_humidity_map,
-          humidity_to_location_map = first_stage.map { |stage| stage.split("\n").map(&:strip) }
+        chunks = input.strip.split("\n\n").map(&:strip)
+        raw_seeds = chunks.first.split("\n").map(&:strip)
+        seeds = parse_seeds(raw_seeds)
+        mappings = Day05.parse_mappings(chunks.slice(1, chunks.size - 1))
 
-        seeds = Part02.parse_seeds(raw_seeds)
-        seed_to_soil, soil_to_fertilizer, fertilizer_to_water, water_to_light,
-          light_to_temperature, temperature_to_humidity, humidity_to_location = [
-          parse_dest_src_map(seed_to_soil_map),
-          parse_dest_src_map(soil_to_fertilizer_map),
-          parse_dest_src_map(fertilizer_to_water_map),
-          parse_dest_src_map(water_to_light_map),
-          parse_dest_src_map(light_to_temperature_map),
-          parse_dest_src_map(temperature_to_humidity_map),
-          parse_dest_src_map(humidity_to_location_map)
-        ]
-
-        {
-          seeds: seeds,
-          seed_to_soil: seed_to_soil,
-          soil_to_fertilizer: soil_to_fertilizer,
-          fertilizer_to_water: fertilizer_to_water,
-          water_to_light: water_to_light,
-          light_to_temperature: light_to_temperature,
-          temperature_to_humidity: temperature_to_humidity,
-          humidity_to_location: humidity_to_location
-        }
+        { seeds: seeds }.merge(mappings)
       end
 
       def self.parse_seeds(raw_seeds) 
@@ -139,49 +114,8 @@ module AoC2023
         ranges
       end
 
-      def self.parse_dest_src_map(map)
-        range_specs = map[1..-1].map { |line| line.split(" ").map(&:to_i) }
-  
-        result = range_specs.map do |spec|
-          dest, src, length = spec
-          { dest: [dest, dest + length - 1], src: [src, src + length - 1] }
-        end
-  
-        result
-      end
-
-      def self.find_dest_or_identity(mapping, token:)
-        range = mapping.find do |ranges|
-          src_range = ranges[:src]
-          src_range.first <= token && token <= src_range.last
-        end
-
-        return token unless range
-  
-        range[:dest].first + token - range[:src].first
-      end
-
       def self.find_src_or_identity(mapping, token:)
-        range = mapping.find do |ranges|
-          dest_range = ranges[:dest]
-          dest_range.first <= token && token <= dest_range.last
-        end
-
-        return token unless range
-  
-        range[:src].first + token - range[:dest].first
-      end
-
-      def self.find_location_for_seed(mappings, seed:)
-        soil = find_dest_or_identity(mappings[:seed_to_soil], token: seed)
-        fertilizer = find_dest_or_identity(mappings[:soil_to_fertilizer], token: soil)
-        water = find_dest_or_identity(mappings[:fertilizer_to_water], token: fertilizer)
-        light = find_dest_or_identity(mappings[:water_to_light], token: water)
-        temperature = find_dest_or_identity(mappings[:light_to_temperature], token: light)
-        humidity = find_dest_or_identity(mappings[:temperature_to_humidity], token: temperature)
-        location = find_dest_or_identity(mappings[:humidity_to_location], token: humidity)
-  
-        location
+        Day05.find_match_or_identity(mapping, token, from: :dest, to: :src)
       end
 
       def self.find_seed_for_location(mappings, location:)
