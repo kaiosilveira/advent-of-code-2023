@@ -76,8 +76,9 @@ The table below contains references to all days, including the completion status
 | #4  | Scratchcards                    | [here](./day-04/) | ✅     | ✅      |
 | #5  | If You Give A Seed A Fertilizer | [here](./day-05/) | ✅     | ✅      |
 | #6  | Wait For It                     | [here](./day-06/) | ✅     | ✅      |
-| #7  | Camel Cards                     | [here](./day-07/) | 🚧     | 🚧      |
+| #7  | Camel Cards                     | [here](./day-07/) | ✅     | ✅      |
 | #8  | Haunted Wasteland               | [here](./day-08/) | ✅     | ✅      |
+| #9  | Mirage Maintenance              | [here](./day-09/) | ✅     | ✅      |
 
 - ✅ = **solved + documented**
 - 🚧 = **solved, missing documentation**
