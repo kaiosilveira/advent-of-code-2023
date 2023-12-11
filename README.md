@@ -80,6 +80,7 @@ The table below contains references to all days, including the completion status
 | #8  | Haunted Wasteland               | [here](./day-08/) | ✅     | ✅      |
 | #9  | Mirage Maintenance              | [here](./day-09/) | ✅     | ✅      |
 | #10 | Pipe Maze                       | [here](./day-10/) | ❌     | ❌      |
+| #11 | Cosmic Expansion                | [here](./day-11/) | ✅     | ✅      |
 
 - ✅ = **solved + documented**
 - 🚧 = **solved, missing documentation**
