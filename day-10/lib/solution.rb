@@ -2,7 +2,18 @@ module AoC2023
   module DayN
     module Part01
       def self.solve(input:)
-        1
+        tiles = label_pipes(input.split("\n")).flat_map do |row|
+          row.reject { |tile| tile[:type] == :ground }
+        end
+
+        tiles.each do |tile|
+          connections = find_connections(tiles, point: tile[:position])
+          tile.merge!(connections: connections)
+        end
+
+        pipe_loop = tiles.select { |t| t[:connections].size == 2 }
+        puts "size: #{pipe_loop.size}"
+        pipe_loop.size / 2 + pipe_loop.size % 2
       end
 
       def self.label_pipes(lines)
@@ -16,7 +27,7 @@ module AoC2023
           end
         end
       end
-      
+
       def self.find_connections(grid, point:)
         row = point[:row]
         col = point[:col]

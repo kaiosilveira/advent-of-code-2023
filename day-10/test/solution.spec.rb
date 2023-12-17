@@ -15,28 +15,8 @@ module AoC2023
         # S is the starting position of the animal; there is a pipe on this tile, but your sketch doesn't show what shape the pipe has.
 
         def test_works
-          tiles = Part01.label_pipes(simplest_input.split("\n")).flat_map do |row|
-            row.reject { |tile| tile[:type] == :ground }
-          end
-
-          tiles.each do |tile|
-            connections = Part01.find_connections(tiles, point: tile[:position])
-            tile.merge!(connections: connections)
-          end
-
-          round = tiles.clone
-          origin = round.first
-          current = origin
-          current[:visited] = true
-          connections = current[:connections]
-
-          # puts origin.inspect
-          # puts origin[:connections].map { |c| c[:symbol] }.inspect
-          # puts origin[:connections].map { |c| c[:connections].map { |c| c[:symbol] } }.inspect
-          # puts origin[:connections].map { |c| c[:connections].map { |c| c[:connections].map { | c| c[:symbol]} } }.inspect
-
-          # puts tiles.map { |tile| "#{tile[:symbol]}: #{tile[:distance]}" }.join("\n")
-          assert_equal 1, Part01.solve(input: "1abc2")
+          assert_equal 4, Part01.solve(input: simplest_input)
+          assert_equal 8, Part01.solve(input: complex_input)
         end
 
         def test_label_pipes
@@ -188,6 +168,16 @@ module AoC2023
             .|.|.
             .L-J.
             .....
+          INPUT
+        end
+
+        def complex_input
+          <<~INPUT
+            ..F7.
+            .FJ|.
+            SJ.L7
+            |F--J
+            LJ...
           INPUT
         end
       end
