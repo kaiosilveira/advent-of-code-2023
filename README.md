@@ -46,7 +46,7 @@ Each `day-n` project looks similar, containing:
 - a `lib/solution.(spec.)rb` file, containing the actual implementation and tests
 - a `lib/main.rb` file, containing the code that loads the input data, parses it and calls the implementation
 
-## Templating and automations
+## Templating and automation
 
 To speed things up, a template was created with the base structure for each day, containing the common structure mentioned above.
 
