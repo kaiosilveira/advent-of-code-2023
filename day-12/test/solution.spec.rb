@@ -23,7 +23,7 @@ module AoC2023
             pattern: "??#", number_of_damaged_springs: 2
           )
 
-          assert_equal 2, Part01.get_number_of_arrangements(
+          assert_equal 3, Part01.get_number_of_arrangements(
             pattern: "???", number_of_damaged_springs: 1
           )
         end
